@@ -1,10 +1,10 @@
 <template>
   <div>
       <h3>Filter by past/upcoming launches</h3>
-      <select id="launch-status" v-model="selectedStatus" @change="selectLaunchStatus">
+      <select id="launch-status" v-model="launchesByStatus" @change="selectedLaunches" >
           <option disabled value="">Select</option>
-          <option value="true">Upcoming</option>
-          <option value="false">Past</option>
+          <option :value="upcomingLaunches">Upcoming</option>
+          <option :value="pastLaunches">Past</option>
       </select>
   </div>
 </template>
@@ -14,14 +14,23 @@ import { eventBus } from "@/main.js";
 
 export default {
     name: "launch-status-filter",
+    props: ["launches"],
     data(){
         return{
-            selectedStatus: null,
+            launchesByStatus: null,
+        }
+    },
+    computed: {
+        upcomingLaunches: function(){
+            return this.launches.filter((launch) => launch.upcoming)
+        },
+        pastLaunches: function(){
+            return this.launches.filter((launch) => !launch.upcoming)
         }
     },
     methods: {
-        selectLaunchStatus: function(){
-            eventBus.$emit('launch-status', this.selectedStatus)
+        selectedLaunches: function(){
+            eventBus.$emit('launch-status', this.launchesByStatus)
         }
     },
 }

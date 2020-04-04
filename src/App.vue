@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h1>SpaceX App</h1>
-    <launch-search :searchQuery="searchQuery" ></launch-search>
-    <launch-status></launch-status>
+    <launch-search></launch-search>
+    <launch-status :launches="launches"></launch-status>
     <launch-list :launches="filteredLaunches"></launch-list>
     
   </div>
@@ -26,7 +26,7 @@ export default {
   data(){
     return {
       launches: [],
-      searchQuery: ""
+      searchQuery: "",
     };
   },
   computed: {
@@ -51,6 +51,7 @@ export default {
     this.getLaunches();
 
     eventBus.$on("query-input", query => (this.searchQuery = query));
+    eventBus.$on("launch-status", launches => (this.launches = launches));
   }
 
 
