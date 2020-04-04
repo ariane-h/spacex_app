@@ -1,12 +1,19 @@
 <template>
   <div id="app">
     <h1>SpaceX App</h1>
+    <launch-list :launches="launches"></launch-list>
   </div>
 </template>
 
 <script>
+import LaunchList from './components/LaunchList.vue';
+
+
 export default {
   name: "app",
+  components: {
+    "launch-list": LaunchList,
+  },
   data(){
     return {
       launches: [],
