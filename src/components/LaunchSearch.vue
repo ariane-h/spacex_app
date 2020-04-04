@@ -1,7 +1,7 @@
 <template lang="html">
     <div>
         <h2> search the launches: </h2>
-        <input type="text" v-model="query" @input="sendQuery(query)" placeholder="search launches"></input>
+        <input type="text" v-model="query" @input="sendQuery" placeholder="search launches"></input>
     </div>
 </template>
 
@@ -17,8 +17,8 @@ export default {
         };
     },
     methods: {
-        sendQuery: function(query) {
-        eventBus.$emit("query-input", query);
+        sendQuery: function() {
+        eventBus.$emit("query-input", this.query);
         },
     },
 }
