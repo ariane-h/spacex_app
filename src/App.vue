@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h1>SpaceX App</h1>
-    <launch-search :searchQuery="searchQuery"></launch-search>
-    <launch-list :launches="launches"></launch-list>
+    <launch-search :searchQuery="searchQuery" ></launch-search>
+    <launch-list :launches="filteredLaunches"></launch-list>
   </div>
 </template>
 
@@ -25,13 +25,21 @@ export default {
       searchQuery: ""
     };
   },
+  computed: {
+    filteredLaunches: function(){
+      return this.launches.filter((launch) => {
+        return launch.mission_name.toLowerCase().match(this.searchQuery.toLowerCase());
+      })
+    }
+  },
 
   methods: {
     getLaunches: function(){
       fetch("https://api.spacexdata.com/v3/launches")
       .then(res => res.json())
       .then(launches => this.launches = launches)
-    }
+    },
+
 
   },
   mounted() {

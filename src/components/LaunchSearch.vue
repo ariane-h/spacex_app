@@ -1,6 +1,6 @@
 <template lang="html">
     <div>
-        <h2> search the launches: </h2>
+        <h2> Search by mission name: </h2>
         <input type="text" v-model="query" @input="sendQuery" placeholder="search launches"></input>
     </div>
 </template>
