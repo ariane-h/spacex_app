@@ -3,7 +3,7 @@
     <h1>SpaceX App</h1>
     <launch-search :launches="launches"></launch-search>
     <launch-status :launches="launches"></launch-status>
-    <launch-list :launches="launches"></launch-list>
+    <launch-list :launches="filteredLaunches"></launch-list>
     
   </div>
 </template>
@@ -29,12 +29,20 @@ export default {
       statusResults: [],
     };
   },
+  computed: {
+    filteredLaunches: function(){
+      return searchResults
+        
+  
+    }
+  },
   methods: {
     getLaunches: function(){
       fetch("https://api.spacexdata.com/v3/launches")
       .then(res => res.json())
       .then(launches => this.launches = launches)
     },
+    
   },
   mounted() {
     this.getLaunches();
