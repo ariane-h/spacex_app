@@ -1,11 +1,13 @@
 <template lang="html">
   <div class="launch-list">
-      <h2>Launch List</h2>
-      <launch-list-item
-      v-for="(launch, index) in launches"
-      :launch="launch"
-      :key="index">
-      </launch-list-item>
+      <div class="launch-list-title"><h2>Launch List</h2></div>
+      <div class="launch-list-items">
+          <launch-list-item
+            v-for="(launch, index) in launches"
+            :launch="launch"
+            :key="index">
+            </launch-list-item>
+      </div>
   </div>
 </template>
 
@@ -24,7 +26,10 @@ export default {
 
 <style scoped>
 .launch-list{
-    justify-self: flex-end;
+    padding-left: 23%;
 }
-
+.launch-list-items{
+    height: 450px;
+    overflow-x: scroll;
+}
 </style>

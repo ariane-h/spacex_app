@@ -1,20 +1,21 @@
 <template>
   <div class="main-info-container">
       <div id="info-text-container">
-        <h1>launch item info</h1>
-        <h2>Mission Name: {{ launch.mission_name }}</h2>
+        <h2>{{ launch.mission_name }}</h2>
+
         <p>Year: {{ launch.launch_year }}</p>
-        <p>Launch Site: {{ launch.launch_site.site_name_long }}</p>
-        <p>Rocket: {{ launch.rocket.rocket_name }}</p>
 
         <p v-show="launch.launch_success">Launch Status: Success</p>
         <p v-show="!launch.launch_success">Launch Status: Failure </p>
-        
-        <p> Details: {{ launch.details }}</p> 
 
-        <p>Payloads:</p>
+        <p>Rocket: {{ launch.rocket.rocket_name }}</p>
+        <p>Launch Site: {{ launch.launch_site.site_name_long }}</p>
+        
+        <p>Details: {{ launch.details }}</p> 
+
+        <p>Payload(s):</p>
         <ul >
-            <li v-for="(payload, index) in launch.rocket.second_stage.payloads" :payload="payloads" :key="index">Type: {{ payload.payload_type }}, Customer: {{ payload.nationality }}</li>
+            <li v-for="(payload, index) in launch.rocket.second_stage.payloads" :payload="payload" :key="index"> {{ payload.payload_type }} for  {{ payload.nationality }}</li>
             </ul>
         </div>
 
@@ -38,5 +39,13 @@ export default {
     display: grid;
     grid-template-columns: 50% 50%;
 }
+
+img{
+    margin-right: 16%;
+    margin-left: 16%;
+    margin-top: 5%;
+}
+
+
 
 </style>

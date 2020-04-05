@@ -70,8 +70,18 @@ export default {
 </script>
 
 <style>
+
+body{
+  font-family: 'Sen', sans-serif;
+  color: #2D3A3A;
+}
+
 h1{
-  color:salmon;
+  color: #637081;
+}
+
+h2{
+  color: #7C98B3;
 }
 
 #app{
