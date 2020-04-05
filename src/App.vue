@@ -3,7 +3,7 @@
     <h1>SpaceX App</h1>
     <launch-search :launches="launches"></launch-search>
     <launch-status :launches="launches"></launch-status>
-    <launch-list :launches="searchResults"></launch-list>
+    <launch-list :launches="launches"></launch-list>
     
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
     return {
       launches: [],
       searchResults: [],
+      statusResults: [],
     };
   },
   methods: {
@@ -39,7 +40,7 @@ export default {
     this.getLaunches();
 
     eventBus.$on("search-query", searchQuery => (this.searchResults = searchQuery));
-    eventBus.$on("launch-status", launches => (this.launches = launches));
+    eventBus.$on("launch-status", statusFilterData => (this.statusResults = statusFilterData));
   },
 
 
