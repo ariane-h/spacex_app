@@ -2,7 +2,20 @@
   <div id="app">
     <h1>SpaceX App</h1>
     <launch-search :searchQuery="searchQuery" ></launch-search>
-    <launch-list :launches="filteredLaunches"></launch-list>
+
+    <div id="launch-container">
+      <div id="launch-list">
+        <launch-list :launches="filteredLaunches"></launch-list>
+      </div>
+
+      <div id="launch-info">
+        <launch-item-info
+            v-if="selectedLaunch"
+            :launch="selectedLaunch">
+        </launch-item-info>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -10,19 +23,22 @@
 import { eventBus } from "@/main.js";
 import LaunchList from './components/LaunchList.vue';
 import LaunchSearch from './components/LaunchSearch.vue';
+import LaunchItemInfo from './components/LaunchItemInfo.vue';
 
 
 export default {
   name: "app",
   components: {
     "launch-list": LaunchList,
-    "launch-search": LaunchSearch
+    "launch-search": LaunchSearch,
+    "launch-item-info": LaunchItemInfo 
   },
 
   data(){
     return {
       launches: [],
-      searchQuery: ""
+      searchQuery: "",
+      selectedLaunch: null,
     };
   },
   computed: {
@@ -46,6 +62,7 @@ export default {
     this.getLaunches();
 
     eventBus.$on("query-input", query => (this.searchQuery = query));
+    eventBus.$on("launch-selected", launch => (this.selectedLaunch = launch));
   }
 
 
@@ -55,5 +72,10 @@ export default {
 <style>
 h1{
   color:salmon;
+}
+
+#launch-container{
+  display: grid;
+  grid-template-columns: auto auto;
 }
 </style>
