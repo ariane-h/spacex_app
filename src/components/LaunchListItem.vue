@@ -1,7 +1,9 @@
 <template>
   <div>
-      <p>{{ launch.mission_name }}</p>
-      <button v-on:click="displayInfo">More Info &rarr;</button>
+      <div class="launch-list-item">
+        <div><p>{{ launch.mission_name }}</p></div>
+        <div class="more-info-button"><button v-on:click="displayInfo">More Info &rarr;</button></div>
+      </div>
   </div>
 </template>
 
@@ -22,5 +24,14 @@ export default {
 </script>
 
 <style scoped>
+.launch-list-item{
+    display: flex;
+    flex-direction: row;
+}
+
+.more-info-button{
+    align-self: center;
+    padding-left: 10px;
+}
 
 </style>

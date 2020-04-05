@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <h1>SpaceX App</h1>
+    <div id="title"><h1>SpaceX Launches</h1></div>
     <launch-search :searchQuery="searchQuery" ></launch-search>
 
     <div id="launch-container">
-      <div id="launch-list">
+     
         <launch-list :launches="filteredLaunches"></launch-list>
-      </div>
+    
 
-      <div id="launch-info">
+     
         <launch-item-info
             v-if="selectedLaunch"
             :launch="selectedLaunch">
         </launch-item-info>
-      </div>
+   
     </div>
 
   </div>
@@ -74,8 +74,17 @@ h1{
   color:salmon;
 }
 
+#app{
+  padding: 1%;
+}
+
+#title{
+  display:flex;
+  justify-content: center;
+}
+
 #launch-container{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 40% auto;
 }
 </style>

@@ -23,5 +23,8 @@ export default {
 </script>
 
 <style scoped>
+.launch-list{
+    justify-self: flex-end;
+}
 
 </style>

@@ -1,7 +1,7 @@
 <template lang="html">
-    <div>
-        <h2> Search by mission name: </h2>
-        <input type="text" v-model="query" @input="sendQuery" placeholder="search launches"></input>
+    <div id="search-query">
+        <div><h2> Search by mission name: </h2></div>
+        <div class="search-box"><input type="text" v-model="query" @input="sendQuery" placeholder="search launches"></input></div>
     </div>
 </template>
 
@@ -25,5 +25,19 @@ export default {
 </script>
 
 <style scoped>
+#search-query{
+    display:flex;
+    justify-content: center;
+    margin: 1%;
+}
+
+.search-box{
+    align-self: center;
+    padding-left: 10px;
+}
+
+.search-box, input{
+    font-size: 15px;
+}
 
 </style>
