@@ -2,7 +2,7 @@
   <div id="app">
     <h1>SpaceX App</h1>
     <launch-search></launch-search>
-    <launch-status :launches="launches"></launch-status>
+    <launch-status :launches="filteredLaunches"></launch-status>
     <launch-list :launches="filteredLaunches"></launch-list>
     
   </div>
