@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <h1>SpaceX App</h1>
-    <launch-search></launch-search>
-    <launch-status :launches="filteredLaunches"></launch-status>
-    <launch-list :launches="filteredLaunches"></launch-list>
+    <launch-search :launches="launches"></launch-search>
+    <launch-status :launches="launches"></launch-status>
+    <launch-list :launches="searchResults"></launch-list>
     
   </div>
 </template>
@@ -22,37 +22,25 @@ export default {
     "launch-search": LaunchSearch,
     "launch-status": LaunchStatusFilter
   },
-
   data(){
     return {
       launches: [],
-      searchQuery: "",
+      searchResults: [],
     };
   },
-  computed: {
-    filteredLaunches: function(){
-      return this.launches.filter((launch) => {
-        return launch.mission_name.toLowerCase().match(this.searchQuery.toLowerCase());
-      })
-    },
-    
-  },
-
   methods: {
     getLaunches: function(){
       fetch("https://api.spacexdata.com/v3/launches")
       .then(res => res.json())
       .then(launches => this.launches = launches)
     },
-
-
   },
   mounted() {
     this.getLaunches();
 
-    eventBus.$on("query-input", query => (this.searchQuery = query));
+    eventBus.$on("search-query", searchQuery => (this.searchResults = searchQuery));
     eventBus.$on("launch-status", launches => (this.launches = launches));
-  }
+  },
 
 
 };
